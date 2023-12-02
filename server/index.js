@@ -1,24 +1,24 @@
 // index.js
 require("dotenv").config();
-// require("express-async-error") //basically takes care of async errors
+require("express-async-error") //basically takes care of async errors
 
 
 const express = require('express');
-// const cors = require("cors")
+const cors = require("cors")
 
 
 // const port = process.env.PORT || 8080;
 
-
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const connectDB = require('./database');
-// const userRoutes = require('./routes/users');
-// const authRoutes = require('./routes/auth');
+
+const userRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
 
 
-// const Artist = require('./Artist'); // Import your artist model
-// const Album = require('./Album'); // Import your album model
-// const Track = require('./models/Track'); // Import your track model
+// const user = require('./models/user'); // Import your artist model
+// const playlist = require('./models/playlist'); // Import your album model
+// const track = require('./models/track'); // Import your track model
 
 
 connectDB(); // Connect to the database
@@ -26,16 +26,15 @@ connectDB(); // Connect to the database
 
 const app = express();
 
+app.use(cors());
+app.use(bodyParser.json());
 
-// app.listen(port, console.log(`Listening on port ${port}...`))
+app.use("/api/users/", userRoutes);
+app.use("/api/login/", authRoutes);
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running and listening on port ${PORT}...`));
 
-// app.use(cors());
-// app.use(bodyParser.json());
-
-
-// app.use("/api/users/", userRoutes);
-// app.use("/api/login/", authRoutes);
 
 
 // Create an artist
@@ -81,7 +80,6 @@ const app = express();
 //       res.status(500).send(error);
 //     }
 //   });
- const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 
