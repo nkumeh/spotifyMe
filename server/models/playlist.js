@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 
-
 const joi = require("joi");
 
-
 const ObjectId = mongoose.Schema.Types.ObjectId;
-
 
 const playlistSchema = new mongoose.Schema({
  name: {
@@ -45,9 +42,7 @@ const validate = (playlist) => {
  return schema.validate(playlist);
 };
 
-
 const playlist = mongoose.model("playlist", playlistSchema);
-
 
 module.exports = { playlist, validate};
 
