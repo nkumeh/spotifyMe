@@ -9,7 +9,6 @@ const connectDB = async () => {
  try {
    await mongoose.connect(dbHost); // connect to db
 
-
    console.log('MongoDB connected successfully');
    console.log("Database connection setup complete");
 
@@ -23,13 +22,10 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 
-
 // const { MongoClient } = require("mongodb");
 
 
 // const dbHost = process.env.DB_HOST;
-
-
 
 
 // const username = encodeURIComponent("<username>");

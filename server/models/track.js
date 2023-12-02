@@ -44,6 +44,6 @@ const validate = (track) => {
   return schema.validate(track)
 }
 
-const track = mongoose.model('track', trackSchema);
+const Track = mongoose.model('track', trackSchema);
 
-module.exports = {track, validate};
+module.exports = {Track, validate};

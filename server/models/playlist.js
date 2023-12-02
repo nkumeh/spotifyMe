@@ -11,7 +11,7 @@ const playlistSchema = new mongoose.Schema({
  },
  user: {
    type: ObjectId,
-   ref: "User",
+   ref: "user",
    required: true,
  },
  description: {
@@ -20,7 +20,7 @@ const playlistSchema = new mongoose.Schema({
  tracks: [
    {
      type: ObjectId,
-     ref: "Track",
+     ref: "track",
      default: [],
    },
  ],
@@ -32,18 +32,19 @@ const playlistSchema = new mongoose.Schema({
 
 
 const validate = (playlist) => {
- const schema = joi.object({
-   name: joi.string().required(),
-   user: joi.string().required(),
-   description: joi.string().allow(""),
-   img: joi.string().allow(""),
-   tracks: joi.array().items(joi.string),
+  const schema = joi.object({
+    name: joi.string().required(),
+    user: joi.string().required(),
+    description: joi.string().allow(""),
+    img: joi.string().allow(""),
+    tracks: joi.array().items(joi.string),
  });
- return schema.validate(playlist);
+
+  return schema.validate(playlist);
 };
 
-const playlist = mongoose.model("playlist", playlistSchema);
+const Playlist = mongoose.model("playlist", playlistSchema);
 
-module.exports = { playlist, validate};
+module.exports = { Playlist, validate};
 
 
