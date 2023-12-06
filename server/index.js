@@ -14,14 +14,13 @@ const connectDB = require('./database');
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const trackRoutes = require('./routes/tracks');
+const playlistRoutes = require('./routes/playlist');
+const searchRoutes = require('./routes/search')
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// const user = require('./models/user'); // Import your artist model
-// const playlist = require('./models/playlist'); // Import your album model
-// const track = require('./models/track'); // Import your track model
 
 connectDB(); // Connect to the database
 
@@ -32,5 +31,7 @@ app.use(bodyParser.json());
 app.use("/api/users/", userRoutes);
 app.use("/api/login/", authRoutes);
 app.use("/api/tracks", trackRoutes);
+app.use("/api/playlist", playlistRoutes);
+app.use("/api/", searchRoutes)
 
 app.listen(PORT, () => console.log(`Server running and listening on port ${PORT}...`));

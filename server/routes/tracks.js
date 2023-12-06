@@ -7,7 +7,6 @@ const admin = require("../middleware/admin");
 const validObjectId = require("../middleware/validObjectId");
 
 // POST Track to create a new user
-
 router.post("/", async (req, res) => {
     const { error } = validate(req.body);
 
@@ -19,7 +18,6 @@ router.post("/", async (req, res) => {
 });
 
 // GET all tracks 
-
 router.get("/", async (req, res) => {
     const tracksToGet = await Track.find();
     res.status(200).send({data: tracksToGet});
@@ -84,7 +82,6 @@ router.get("/like", auth, async (req, res) => {
     const likedSongs = await Track.find({_id:userLiking.likedSongs})
     res.status(200).send({data: likedSongs});
 });
-
 
 
 module.exports = router;
